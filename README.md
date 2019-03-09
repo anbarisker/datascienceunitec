@@ -1,2 +1,0 @@
-# datascienceunitec
-Intro Data Science
