@@ -13,6 +13,7 @@ corr <- function(directory, threshold=0)
   # Note: do not round the results!
   
   Directory_File <-list.files(directory,full.names = TRUE)
+  #complete is a created function from previors part, which gives the id,nobs value
   rawdatas <- complete(directory)
   # subset: Return subsets of vectors, matrices or data frames which meet conditions.
   subract_data <-subset(rawdatas,nobs>threshold)
@@ -20,6 +21,8 @@ corr <- function(directory, threshold=0)
  
    for(i in subract_data$id){
     data <- read.csv(Directory_File[i])
+    #calculate correlation between nitrate and sulfate
+    #If use is "complete.obs" then missing values are handled by casewise deletion (and if there are no complete cases, that gives an error).
     result <- c(result,cor(data$nitrate,data$sulfate,use="complete.obs"))
   }
   result

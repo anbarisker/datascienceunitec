@@ -10,11 +10,13 @@
 # directory' argument and returns the ones more than a certain value ('p') 
 # across all of the monitors, ignoring any missing values coded as NA.
 
-#pollutantvector <-function(directory,pollutant,id=1:332,p)
+#Start
+
 pollutantvector <-function(directory,pollutant,id=1:332,p)
 {
   #Directory_files <-list.files(directory,full.names = TRUE)
   #result will be the dataframe
+  #c is combine values in vector/list
   result <-c(Date=character(),sulfate=numeric(),nitrate=numeric(),ID=integer())
   
   
@@ -35,6 +37,8 @@ pollutantvector <-function(directory,pollutant,id=1:332,p)
   for(i in id)
   {
     records <-read.csv(Directory_File[i])
+    #apply : Returns a vector or array or list of values obtained by applying a function to margins of an array or matrix.
+    #so array will records[pollutant],margin 1 then where function(x) takes each and check if its not NA and more than p value
     vaildlistdata <-apply(records[pollutant], 1, function(x) (!is.na(x)&&(x > p)))
     data <-records[vaildlistdata,]
     result<-rbind(result,data)

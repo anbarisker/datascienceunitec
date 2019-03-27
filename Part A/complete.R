@@ -12,6 +12,13 @@ complete <- function(directory, id=1:332)
   ## .. 
   ## Where 'id' is the monitor ID number and 'nobs' is the no. of complete case
   
+  #Start
+  
+  if(1 > min(id) || 332 < max(id)) {
+    print(paste("Error: id is out of range."))
+    return(NA)
+  }
+  
   Directory_File <-list.files(directory,full.names = TRUE)
   # step 2 create a empty vector object
   v <-vector()
